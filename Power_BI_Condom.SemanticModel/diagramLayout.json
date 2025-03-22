@@ -7,7 +7,21 @@
         "x": 0,
         "y": 0
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Tabela1",
+          "nodeLineageTag": "8e8913c5-7133-4f8f-8818-eea32618f7ab",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
       "name": "Todas as tabelas",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,

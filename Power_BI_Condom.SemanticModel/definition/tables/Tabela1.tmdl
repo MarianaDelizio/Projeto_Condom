@@ -1,0 +1,176 @@
+table Tabela1
+	lineageTag: 8e8913c5-7133-4f8f-8818-eea32618f7ab
+
+	column Year
+		dataType: string
+		lineageTag: 330f34c1-6391-46d4-b08f-98644977b769
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 5eb6cc76-ea75-4219-9c85-6ac1e2644981
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Sales (Million Units)'
+		dataType: int64
+		formatString: 0
+		lineageTag: bfde4e59-50c7-4959-be9a-bb0b60befbf2
+		summarizeBy: sum
+		sourceColumn: Total Sales (Million Units)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Revenue (USD)'
+		dataType: int64
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: bddd467f-0e46-426b-b38e-f191676170ca
+		summarizeBy: sum
+		sourceColumn: Market Revenue (USD)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Government Campaigns'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 96654608-ed98-4ced-b3fc-83c43c62c2fe
+		summarizeBy: none
+		sourceColumn: Government Campaigns
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Awareness Index (0-10)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5b152f8e-1356-4d15-80b4-f70621364d20
+		summarizeBy: sum
+		sourceColumn: Awareness Index (0-10)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Most Popular Condom Type'
+		dataType: string
+		lineageTag: 17ca6ab6-5fa6-4fc5-8fc0-efe3b45314f7
+		summarizeBy: none
+		sourceColumn: Most Popular Condom Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contraceptive Usage Rate (%)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 18cd835d-fc1e-4005-8f2a-09dfbde7496e
+		summarizeBy: sum
+		sourceColumn: Contraceptive Usage Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Teen Pregnancy Rate (per 1000 teens)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: fca94ef6-8e38-4219-8e03-eb98eb80153c
+		summarizeBy: sum
+		sourceColumn: Teen Pregnancy Rate (per 1000 teens)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HIV Prevention Awareness (%)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 2ed96c4c-18e6-411a-bb4b-70c87ae155ea
+		summarizeBy: sum
+		sourceColumn: HIV Prevention Awareness (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Online Sales (%)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 232dd1b6-cab7-40c9-9c14-708cf1ff7078
+		summarizeBy: sum
+		sourceColumn: Online Sales (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average Price per Condom (USD)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: db03eba9-8778-4ff5-84dc-283058daf404
+		summarizeBy: sum
+		sourceColumn: Average Price per Condom (USD)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Male vs Female Purchases (%)'
+		dataType: string
+		lineageTag: df112ab8-fef4-4bf6-83ed-63ce3a3e78a9
+		summarizeBy: none
+		sourceColumn: Male vs Female Purchases (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Male Purchases (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: d216c1f9-55f2-41c9-97ec-59043d43d5b4
+		summarizeBy: sum
+		sourceColumn: Male Purchases (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Female Purchases (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 86b4011b-1b2f-434f-8132-73e9d683d7a8
+		summarizeBy: sum
+		sourceColumn: Female Purchases (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brand Dominance'
+		dataType: string
+		lineageTag: 5aa0de19-7a88-4399-90c4-7cdea8db3022
+		summarizeBy: none
+		sourceColumn: Brand Dominance
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sex Education Programs (Yes/No)'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ee4cee04-f6db-4a2e-bbb2-bc160c181fcc
+		summarizeBy: none
+		sourceColumn: Sex Education Programs (Yes/No)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tabela1 = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\marib\OneDrive\Desktop\Power_BI_Condom\Rich_global_Condom_Usage_Dataset.xlsx"), null, true),
+				    Tabela1_Table = Fonte{[Item="Tabela1",Kind="Table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Tabela1_Table,{{"Year", Int64.Type}, {"Country", type text}, {"Total Sales (Million Units)", Int64.Type}, {"Market Revenue (USD)", Int64.Type}, {"Government Campaigns", type text}, {"Awareness Index (0-10)", type number}, {"Most Popular Condom Type", type text}, {"Contraceptive Usage Rate (%)", type number}, {"Teen Pregnancy Rate (per 1000 teens)", type number}, {"HIV Prevention Awareness (%)", type number}, {"Online Sales (%)", type number}, {"Average Price per Condom (USD)", type number}, {"Male vs Female Purchases (%)", type text}, {"Male Purchases (%)", Int64.Type}, {"Female Purchases (%)", Int64.Type}, {"Brand Dominance", type text}, {"Sex Education Programs (Yes/No)", type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado","No","False",Replacer.ReplaceText,{"Government Campaigns"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","Yes","True",Replacer.ReplaceText,{"Government Campaigns"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído1",{{"Government Campaigns", type logical}}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Tipo Alterado1","No","False",Replacer.ReplaceText,{"Sex Education Programs (Yes/No)"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","Yes","True",Replacer.ReplaceText,{"Sex Education Programs (Yes/No)"}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Valor Substituído3",{{"Sex Education Programs (Yes/No)", type logical}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+
