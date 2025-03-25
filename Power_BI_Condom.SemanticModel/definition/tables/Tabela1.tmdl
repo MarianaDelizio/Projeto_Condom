@@ -85,13 +85,17 @@ table Tabela1
 		annotation SummarizationSetBy = Automatic
 
 	column 'HIV Prevention Awareness (%)'
-		dataType: double
-		formatString: 0.00
+		dataType: int64
+		formatString: 0
 		lineageTag: 2ed96c4c-18e6-411a-bb4b-70c87ae155ea
 		summarizeBy: sum
 		sourceColumn: HIV Prevention Awareness (%)
 
+		changedProperty = DataType
+
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	column 'Online Sales (%)'
 		dataType: double
@@ -121,21 +125,22 @@ table Tabela1
 
 	column 'Male Purchases (%)'
 		dataType: int64
-		formatString: 0
 		lineageTag: d216c1f9-55f2-41c9-97ec-59043d43d5b4
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: Male Purchases (%)
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Female Purchases (%)'
 		dataType: int64
 		formatString: 0
 		lineageTag: 86b4011b-1b2f-434f-8132-73e9d683d7a8
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: Female Purchases (%)
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column 'Brand Dominance'
 		dataType: string
